@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nahidur Zaman Tushar - Personal Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./my.css">
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container py-5">
+        <div class="text-center animate__animated animate__fadeIn">
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQH7M6DzjsboKg/profile-displayphoto-shrink_400_400/B4DZXKX7zHG8Ak-/0/1742857027723?e=1752710400&v=beta&t=qXAJsn77GCJZEKVm42-yWCTFeWtdchS4N-CGRexDItU" 
+                 alt="Profile Picture" class="profile-img mb-3">
+            <h1 class="fw-bold">Nahidur Zaman Tushar</h1>
+            <p class="text-muted">Student, DevOps Engineer(NOOB)</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <div class="card p-4 mt-4 animate__animated animate__fadeInUp">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <ul>
+                <li><i class="fas fa-university"></i> 6th Semester, CSE Department, MIST</li>
+                <li><i class="fas fa-certificate"></i> Completed CS302: Software Engineering (Saylor Academy)</li>
+            </ul>
+
+            <h2 class="section-title"><i class="fas fa-bullseye"></i> Career Goal</h2>
+            <p>To become an entrepreneur and establish an IT firm.</p>
+
+            <h2 class="section-title"><i class="fas fa-user-tie"></i> Campus Ambassador Roles</h2>
+            <ul>
+                <li>bdapps</li>
+                <li>UIU CSE Fest 2025</li>
+                <li>UIU Robotics</li>
+                <li>National Robotics Competition Traction (ROBU)</li>
+            </ul>
+
+            <h2 class="section-title"><i class="fas fa-users"></i> Club Involvement</h2>
+            <ul>
+                <li><strong>MIST Cyber Security Club (Supervisor):</strong> Event Management, HackMeIfYouCan, MIST Leetcon 2023</li>
+                <li><strong>MIST Computer Club:</strong> Coding competitions, MIST Independence Day Contest</li>
+                <li><strong>MIST Mongol Barota:</strong> Electrical system design (ARCI, URC)</li>
+                <li><strong>MIST Drama & Film Society:</strong> Supervisor (May 2023 – Mar 2024)</li>
+                <li><strong>MIST Photographic Society:</strong> Executive Member</li>
+            </ul>
+
+            <h2 class="section-title"><i class="fas fa-code"></i> Key Skills</h2>
+            <p>Event organizing, communication, hosting, Canva design, videography, HR tasks, blog writing, AI forum tasks.</p>
+
+            <h2 class="section-title"><i class="fas fa-project-diagram"></i> Major Project</h2>
+            <p><strong>Goldbach School</strong> – A learning platform (Next.js, Supabase, Hono, Tailwind)</p>
+            <ul>
+                <li>Website: <a href="https://goldbach-school.vercel.app/" target="_blank">goldbach-school.vercel.app</a></li>
+                <li>GitHub: <a href="https://github.com/Tamal267/GoldbachSchool" target="_blank">github.com/Tamal267/GoldbachSchool</a></li>
+            </ul>
+
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Internships</h2>
+            <ul>
+                <li><strong>YSSE (Admin & HR)</strong></li>
+                <li><strong>YSSE Learn</strong> – IT, design, content, AI subteam, subteam leadership</li>
+            </ul>
+
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Events Organized</h2>
+            <ul>
+                <li>Intra MIST CTF</li>
+                <li>Android Pentesting Workshop</li>
+                <li>Farewell and Certificate Distribution for MCSC</li>
+            </ul>
+
+            <h2 class="section-title"><i class="fas fa-book"></i> Recent Academic Assignment</h2>
+            <p><strong>Assignment_Mid_SP2025</strong>: Types of computers, memory types, CPU, binary/hex/octal conversions, component notes</p>
+        </div>
+
+        <!-- DevOps Mini-Game -->
+        <div class="card p-4 mt-4 animate__animated animate__fadeInUp">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> DevOps Mini-Game: "Deploy or Die Trying"</h2>
+            <p>How fast can you deploy? Click the server 10 times to deploy your app!</p>
+            
+            <div class="game-container text-center">
+                <div id="server" class="server">
+                    <i class="fas fa-server fa-5x"></i>
+                    <div class="progress mt-3">
+                        <div id="deploy-progress" class="progress-bar progress-bar-striped progress-bar-animated" 
+                             role="progressbar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <p id="game-message" class="mt-3">Ready to deploy? Click the server!</p>
+                <button id="reset-btn" class="btn btn-sm btn-outline-secondary mt-2">Reset Deployment</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DevOps Mini-Game JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            let clicks = 0;
+            const maxClicks = 10;
+            const server = document.getElementById('server');
+            const message = document.getElementById('game-message');
+            const progressBar = document.getElementById('deploy-progress');
+            const resetBtn = document.getElementById('reset-btn');
+            
+            // Funny DevOps messages
+            const messages = {
+                start: ["Ready to deploy?", "The CI/CD pipeline is watching...", "No pressure, but production is down!"],
+                deploying: [
+                    "Compiling dependencies...",
+                    "Running unit tests (that you didn't write)...",
+                    "Asking ChatGPT for help...",
+                    "Checking StackOverflow...",
+                    "Restarting Docker for the 5th time...",
+                    "Why isn't Kubernetes working?!",
+                    "Quick! Hide from the SRE team!",
+                    "Bypassing security checks...",
+                    "Ignoring linter errors...",
+                    "'It works on my machine'"
+                ],
+                success: [
+                    "Deployment successful! (This time)",
+                    "The app is live! (Hope you tested it)",
+                    "Users won't notice the bugs... probably",
+                    "Ship it! 🚢"
+                ],
+                failure: [
+                    "404 Deployment Not Found",
+                    "Kubernetes says no",
+                    "Docker container escaped again",
+                    "The cloud is raining errors",
+                    "You broke production!",
+                    "Jenkins is judging you"
+                ]
+            };
+            
+            server.addEventListener('click', () => {
+                clicks++;
+                const progress = (clicks / maxClicks) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                if (clicks <= maxClicks) {
+                    // Random deploying message
+                    message.className = 'deploying';
+                    message.textContent = messages.deploying[Math.floor(Math.random() * messages.deploying.length)];
+                    
+                    // Server shake animation
+                    server.style.animation = 'shake 0.5s';
+                    setTimeout(() => { server.style.animation = ''; }, 500);
+                }
+                
+                if (clicks === maxClicks) {
+                    // 80% chance of success, 20% of failure - just like real DevOps!
+                    const isSuccess = Math.random() > 0.2;
+                    
+                    if (isSuccess) {
+                        message.className = 'success';
+                        message.textContent = messages.success[Math.floor(Math.random() * messages.success.length)];
+                        progressBar.className = 'progress-bar progress-bar-striped bg-success';
+                    } else {
+                        message.className = 'failure';
+                        message.textContent = messages.failure[Math.floor(Math.random() * messages.failure.length)];
+                        progressBar.className = 'progress-bar progress-bar-striped bg-danger';
+                        server.innerHTML = '<i class="fas fa-server fa-5x" style="color: #dc3545;"></i>';
+                    }
+                }
+            });
+            
+            resetBtn.addEventListener('click', () => {
+                clicks = 0;
+                progressBar.style.width = '0%';
+                progressBar.className = 'progress-bar progress-bar-striped progress-bar-animated';
+                message.className = '';
+                message.textContent = messages.start[Math.floor(Math.random() * messages.start.length)];
+                server.innerHTML = '<i class="fas fa-server fa-5x"></i><div class="progress mt-3"><div id="deploy-progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div></div>';
+            });
+            
+            // Start with random message
+            message.textContent = messages.start[Math.floor(Math.random() * messages.start.length)];
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
